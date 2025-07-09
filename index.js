@@ -13,7 +13,8 @@ const io = new Server(server, {
 
 io.on('connection', (socket) => {
   socket.on('flash', (color) => {
-    io.emit('flash', color);
+    const timestamp = Date.now(); // capture the send time
+    io.emit('flash', { color, timestamp }); // send to all clients
   });
 });
 
